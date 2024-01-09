@@ -53,7 +53,7 @@
                 </ul>
 
                 <form action="#" class="font-rale font-14">
-                    <a href="#" class="py-2 rounded-pill color-primary-bg">
+                    <a href="cart.php" class="py-2 rounded-pill color-primary-bg">
                         <span class="font-16 px-2 text-white"><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
                         <span class="px-3 py-2 font-16 text-dark bg-light rounded-pill">0</span>
                     </a>

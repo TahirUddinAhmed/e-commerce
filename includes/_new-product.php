@@ -1,6 +1,6 @@
 <section id="new-product">
         <div class="container py-4">
-          <h4 class="font-20 font-rubik">New Phones</h4>
+          <h4 class="font-20 font-rubik">New Product</h4>
           <hr>
 
           <!-- // owl carousel -->
