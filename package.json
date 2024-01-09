@@ -1,0 +1,20 @@
+{
+  "name": "mobileshopee",
+  "version": "1.0.0",
+  "description": "- Creating a html file \"index.html\"\r   - Add Bootstrap CDN\r   - Add owl-carousal CDN\r   - Add Font-awesome CDN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sass ./sass/style.scss style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TahirUddinAhmed/ecommerce-mobile.git"
+  },
+  "author": "Tahir Uddin Ahmed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TahirUddinAhmed/ecommerce-mobile/issues"
+  },
+  "homepage": "https://github.com/TahirUddinAhmed/ecommerce-mobile#readme"
+}
