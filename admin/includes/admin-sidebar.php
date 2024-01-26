@@ -11,7 +11,7 @@
                                 <a href="#">Add product</a>
                             </li>
                             <li>
-                                <a href="#">Categories</a>
+                                <a href="categories.php">Categories</a>
                             </li>
                             <li>
                                 <a href="#">View products</a>
