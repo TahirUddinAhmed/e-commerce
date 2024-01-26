@@ -8,13 +8,13 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#product"><i class="fa-solid fa-box"></i> Product Management <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="product" class="collapse">
                             <li>
-                                <a href="#">Add product</a>
+                                <a href="products.php?source=add">Add product</a>
                             </li>
                             <li>
                                 <a href="categories.php">Categories</a>
                             </li>
                             <li>
-                                <a href="#">View products</a>
+                                <a href="products.php?source=view">View products</a>
                             </li>
                         </ul>
                     </li>
