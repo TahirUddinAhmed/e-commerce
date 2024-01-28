@@ -31,16 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // image upload
                 move_uploaded_file($product_image_temp, $target_dir);
 
-                $query = "INSERT INTO `products` (`category_id`, `Name`, `Description`, `Price`, `original-price`, `StockQuantity`, `product-img`, `added_on`) VALUES ('$productCategory', '$productName', '$productDesc', '$sellingPrice', '$originalPrice', '$productQuantity', '$product_image', current_timestamp());";
+                $query = "INSERT INTO `products` (`category_id`, `Name`, `Description`, `Price`, `original-price`, `StockQuantity`, `product-img`, `status` , `added_on`) VALUES ('$productCategory', '$productName', '$productDesc', '$sellingPrice', '$originalPrice', '$productQuantity', '$product_image', '$productStatus' , current_timestamp());";
                 $result = mysqli_query($conn, $query);
 
-                if(!$result) {
+                if (!$result) {
                     die("QUERY FAILED" . mysqli_error($conn));
                 } else {
                     // redirect to the success page
                     $success = "Product has been added successfully";
                 }
-
             } else {
                 $imgErr = '<p class="text-danger">Image size is too large, image size should be less than 500KB.</p>';
             }
@@ -61,7 +60,18 @@ if (!$category_result) {
 
 
 ?>
-<span class="text-success"><?= $success ?? null ?></span>
+<?php
+ if(isset($success)) {
+?>
+    <div class="alert alert-success" role="alert">
+     <?= $success ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+ }
+?>
 <h2>Add Products</h2>
 <hr>
 
@@ -109,7 +119,7 @@ if (!$category_result) {
             <div class="form-group">
                 <label for="product-img">Product Image</label>
                 <input type="file" name="product-image" class="form-control">
-                <span class="text-danger"><?= $imgErr ??null ?></span>
+                <span class="text-danger"><?= $imgErr ?? null ?></span>
             </div>
 
             <div class="form-group">
@@ -131,10 +141,10 @@ if (!$category_result) {
                     </select>
                 </div>
 
-                <div class="img-preview">
+                <!-- <div class="img-preview">
                     <p>Image Preview</p>
-                    <img src="../assets/products/<?= $product_image ?? null; ?>" class="img-thumbnail" style="margin-bottom: 20px;" alt="">
-                </div>
+                    <img src="../assets/products/<?  ?>" class="img-thumbnail" style="margin-bottom: 20px;" alt="">
+                </div> -->
 
                 <input type="submit" value="Add Product" class="btn btn-primary btn-lg btn-block">
             </div>
