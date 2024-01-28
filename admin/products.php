@@ -13,6 +13,9 @@
             case 'add': 
                 include('includes/addProducts.php');
                 break;
+            case 'edit':
+                include('includes/editProduct.php');
+                break;
             default: 
                 include('includes/viewProducts.php');
         }
