@@ -1,10 +1,44 @@
 <?php require_once 'includes/header.php' ?>
-        <!-- product -->
+<?php
+ if(isset($_GET['p_id'])) {
+    $product_id = $_GET['p_id'];
+ } else {
+    header("location: index.php");
+    exit();
+ }
+
+ $query = "SELECT * FROM products WHERE `ProductID` = '$product_id'";
+ $result = mysqli_query($conn, $query);
+
+ if(!$result) {
+    die("QUERY FAILED" . mysqli_error($conn));
+ }
+
+ $productCount = mysqli_num_rows($result);
+
+ if($productCount <= 0) {
+    header("Location: index.php");
+    exit();
+ } 
+
+ while($data=mysqli_fetch_assoc($result)) {
+    $productID = $data['ProductID'];
+    $categoryID = $data['category_id'];
+    $productName = $data['Name'];
+    $price = $data['Price'];
+    $originalPrice = $data['original-price'];
+    $quantity = $data['StockQuantity'];
+    $productImg = $data['product-img'];
+    $desc = $data['Description'];
+ }
+
+?>
+<!-- product -->
         <section id="product" class="py-3">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <img src="./assets/products/1.png" alt="product" class="img-fluid">
+                        <img src="./assets/products/<?= $productImg ?>" alt="product" class="img-fluid">
                         <div class="row pt-4 font-16 font-balo">
                             <div class="col">
                                 <button type="submit" class="btn btn-danger form-control">Buy Now</button>
@@ -17,8 +51,8 @@
                         </div>
                     </div>
                     <div class="col-sm-6 py-3">
-                        <h5 class="font-balo font-20">Samsung Galaxy 10</h5>
-                        <small>by samsung</small>
+                        <h5 class="font-balo font-20"><?= $productName ?></h5>
+                        <!-- <small>by samsung</small> -->
 
                         <div class="d-flex">
                             <div class="rating text-warning font-12">
@@ -37,15 +71,15 @@
                         <div class="product-price font-rale mt-3">
                             <div class="product-item d-flex">
                                 <p class="w-25">M.R.P</p>
-                                <P><strike>15499</strike></P>
+                                <P><strike><?= $originalPrice ?></strike></P>
                             </div>
                             <div class="product-item d-flex">
                                 <p class="w-25">Deal Price</p>
-                                <P class=""><span class="font-20 text-danger font-rale">12799</span> <small>include of all taxes</small></P>
+                                <P class=""><span class="font-20 text-danger font-rale"><?= $price ?></span> <small>include of all taxes</small></P>
                             </div>
                             <div class="product-item d-flex">
                                 <p class="w-25">You Save</p>
-                                <P class=""><span class="font-20 text-danger font-rale">2700</span></P>
+                                <P class=""><span class="font-20 text-danger font-rale"><?= $originalPrice - $price ?></span></P>
                             </div>
                         </div>
                         <!-- !product price -->
@@ -129,8 +163,8 @@
                     <div class="col-12 mt-2">
                       <h6 class="font-rubik">Product Description</h6>
                       <hr>
-                      <p class="font-rale font-14">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci itaque obcaecati dignissimos provident animi et?</p>
-                      <p class="font-rale font-14">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci itaque obcaecati dignissimos provident animi et?</p>
+                      <p class="font-rale font-14"><?= $desc ?></p>
+                      <!-- <p class="font-rale font-14">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci itaque obcaecati dignissimos provident animi et?</p> -->
                     </div>
                 </div>
             </div>
