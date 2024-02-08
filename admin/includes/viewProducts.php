@@ -23,12 +23,28 @@
  }
 
 ?>
+<!-- product delete alert -->
 <?php 
         if(isset($_GET['deleted'])) {
            
         ?>
             <div class="alert alert-danger" role="alert">
             Product is deleted successfully
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        <?php
+            
+        }
+    ?>
+<!-- product update alert -->
+<?php 
+        if(isset($_GET['updated'])) {
+          $p_id = $_GET['updated'];
+        ?>
+            <div class="alert alert-success" role="alert">
+            Product updated successfully <a href="../product.php?p_id=<?= $p_id ?>">View the product</a>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

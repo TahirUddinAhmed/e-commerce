@@ -28,11 +28,84 @@ if(mysqli_num_rows($result) > 0) {
     // redirect -> view product page
     header("Location: products.php");
 }
+
+// retreive all the category item 
+$catQ = "SELECT * FROM `category`";
+$catRes = mysqli_query($conn, $catQ);
+
+if(!$catRes) {
+    die("QUERY FAILED" . mysqli_error($conn));
+}
+
+
+
+// edit the product form 
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $productName = mysqli_real_escape_string($conn, $_POST['product-name']);
+    $sellingPrice = mysqli_real_escape_string($conn, $_POST['product-price']);
+    $originalPrice = mysqli_real_escape_string($conn, $_POST['original-price']);
+    $productCategory = mysqli_real_escape_string($conn, $_POST['product-category']);
+    $productDesc = mysqli_real_escape_string($conn, $_POST['product-desc']);
+    $productStatus = mysqli_real_escape_string($conn, $_POST['product-status']);
+    $productQuantity = mysqli_real_escape_string($conn, $_POST['original-quantity']);
+
+    // support extension
+    $allowed_ext = array('png', 'jpg', 'jpeg');
+
+    $product_image = $_FILES['product-image']['name'];
+    $product_image_temp = $_FILES['product-image']['tmp_name'];
+    $image_size = $_FILES['product-image']['size'];
+    $target_dir = "../assets/products/$product_image";
+
+    $image_ext = explode('.', $product_image);
+    $image_ext = strtolower(end($image_ext));
+
+    if(!empty($product_image)) {
+        if (in_array($image_ext, $allowed_ext)) {
+            if ($image_size <= 5000000) {
+                // image upload
+                move_uploaded_file($product_image_temp, $target_dir);
+
+                if (!$result) {
+                    die("QUERY FAILED" . mysqli_error($conn));
+                } else {
+                    // redirect to the success page
+                    $success = "Product has been added successfully";
+                }
+            } else {
+                $imgErr = '<p class="text-danger">Image size is too large, image size should be less than 500KB.</p>';
+            }
+        } else {
+            $imgErr = '<p class="text-danger">Only .png, .jpg, .jpen and .gif allowed</p>';
+        }
+    } else {
+        // grab the product image from DB
+        $grabImg = "SELECT * FROM products WHERE `ProductID` = '$productId'";
+        $imgRes = mysqli_query($conn, $grabImg);
+
+        while($data=mysqli_fetch_assoc($imgRes)) {
+            $product_image = $data['product-img'];
+        }
+    }
+
+
+    // update query 
+    $updateProduct = "UPDATE `products` SET `category_id` = '$productCategory', `Name` = '$productName', `Description` = '$productDesc', `price` = '$sellingPrice', `original-price` = '$originalPrice', `StockQuantity` = '$productQuantity', `product-img` = '$product_image', `status` = '$productStatus' WHERE `ProductID` = '$productId'";
+    $updateRes = mysqli_query($conn, $updateProduct);
+
+    if(!$updateRes) {
+        die("query failed" . mysqli_error($conn));
+    } else {
+        header("Location: products.php?updated=$productId");
+    }
+
+
+}
 ?>
 <h2 class="text-center">Edit Product</h2>
 <hr>
 <div class="row">
-    <form action="products.php?source=add" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="col-lg-7" style="border: 1.5px solid #ddd; margin-left: 20px; padding: 14px;">
             <span class="text-danger"><?= $formErr ?? null ?></span>
             <div class="form-group">
@@ -52,7 +125,21 @@ if(mysqli_num_rows($result) > 0) {
                 <select name="product-category" class="form-control">
                     <option value="">Choose Category</option>
 
-                    
+                    <?php
+                        while($data=mysqli_fetch_assoc($catRes)) {
+                            $catID = $data['id'];
+                            $catName = $data['name'];
+                          if($cat_id == $catID) {
+                    ?>
+                        <option value="<?= $cat_id ?>" selected><?= $catName ?></option>
+                    <?php
+                          } else {
+                    ?>
+                        <option value="<?= $catID ?>"><?= $catName ?></option>
+                    <?php
+                          }
+                        }
+                    ?>
 
                 </select>
             </div>
@@ -76,7 +163,7 @@ if(mysqli_num_rows($result) > 0) {
 
                 <div class="form-group">
                     <label for="product-img">Product Image</label>
-                    <input type="file" name="product-image" class="form-control">
+                    <input type="file" name="product-image" class="form-control" value="<?= $productImage ?>">
                 </div>
 
                 <div class="img-preview">
@@ -89,9 +176,9 @@ if(mysqli_num_rows($result) > 0) {
 
             <div class="" style="border: 1.5px solid #ddd; margin-left: 20px; margin-top: 20px; padding: 14px;">
                 <div class="form-group">
-                    <label for="product-status">Product Status</label>
+                    <label for="product-status">Product Status: [<?= $status ?>]</label>
                     <select name="product-status" class="form-control">
-                        <option value="">Select</option>
+                        <option value="<?= $status ?>">Select</option>
                         <option value="draft">draft</option>
                         <option value="public">Public</option>
                     </select>
