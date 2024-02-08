@@ -4,9 +4,11 @@
 require_once 'includes/_banner-section.php';
 // <!-- !Banner section -->
 
-// <!-- start #top section -->
-require_once 'includes/_top-sale.php';
-// <!-- !start #top section -->
+// <!-- New product -->
+require_once 'includes/_new-product.php';
+// <!-- !New product -->
+
+
 
 // <!-- Special-price -->
 require_once 'includes/_spacial-offer.php'; 
@@ -16,9 +18,9 @@ require_once 'includes/_spacial-offer.php';
 require_once 'includes/_banner-ads.php';
 // <!-- !Banner ads -->
 
-// <!-- New product -->
-require_once 'includes/_new-product.php';
-// <!-- !New product -->
+// <!-- start #top section -->
+require_once 'includes/_top-sale.php';
+// <!-- !start #top section -->
 
 // <!-- Blog Section -->
 require_once 'includes/_blog-section.php';
