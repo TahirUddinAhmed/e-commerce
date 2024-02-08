@@ -1,17 +1,17 @@
 <?php
 //  query to grab all the products 
-$query = "SELECT * FROM products";
+$query = "SELECT * FROM `products` WHERE `category_id` ='$categoryID'";
 $result = mysqli_query($conn, $query);
 
 if(!$result) {
   die("QUERY FAILED" . mysqli_error($conn));
-}
+} 
 
 
 ?>
-<section id="new-product">
+<section id="related-product">
         <div class="container py-4">
-          <h4 class="font-20 font-rubik">New Product</h4>
+          <h4 class="font-20 font-rubik">Related Products</h4>
           <hr>
 
           <!-- // owl carousel -->

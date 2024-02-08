@@ -44,6 +44,26 @@ $(document).ready(function() {
    });
 
 
+   // related-product - owl-carousel
+   $("#related-product .owl-carousel").owlCarousel({
+      loop:false,
+      margin:10,
+      nav: false,
+      dots: true,
+      responsive:{
+         0:{
+               items:1.7
+         },
+         600:{
+               items:3
+         },
+         1000:{
+               items:5
+         }
+      }
+   });
+
+
    // isotop 
    const grid = $(".grid").isotope({
       itemSelector: '.grid-item',

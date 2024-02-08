@@ -54,7 +54,7 @@
                         <h5 class="font-balo font-20"><?= $productName ?></h5>
                         <!-- <small>by samsung</small> -->
 
-                        <div class="d-flex">
+                        <!-- <div class="d-flex">
                             <div class="rating text-warning font-12">
                                 <span><i class="fa fa-star" aria-hidden="true"></i></span>
                                 <span><i class="fa fa-star" aria-hidden="true"></i></span>
@@ -64,7 +64,7 @@
                                 <a href="" class="font-14 font-rale">1548 ratings | 999+ answered question </a>
                                 
                             </div>
-                        </div>
+                        </div> -->
                         <hr class="m-0">
 
                         <!-- product price -->
@@ -85,7 +85,7 @@
                         <!-- !product price -->
 
                         <!-- policy -->
-                        <div id="policy">
+                        <!-- <div id="policy">
                             <div class="d-flex">
                                 <div class="return text-center me-5">
                                     <div class="font-20 my-2 color-second">
@@ -109,14 +109,14 @@
                                     <a href="" class="font-rale font-12">1 year <br>Warrenty</a>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- !policy -->
                         <hr>
 
                         <!-- order detail -->
                         <div id="order-detail" class="font-rale d-flex flex-column text-dark">
                           <small>Delivery By: Nov 21 - Nov - 26</small>
-                          <small>Sold by <a href="#">Daily Electronics</a>(4.5 out of 5 | 19,752 ratings)</small>
+                          <small>Sold by <a href="#">Daily Electronics</a></small>
                           <small><i class="fas fa-map-marker-alt color-primary"></i>&nbsp;&nbsp;Deliver to Customer - 782105</small>
                         </div>
                         <!-- !order detail -->
@@ -136,27 +136,6 @@
                           </div>
                       </div>
 
-                      <!-- size -->
-                      <div class="size my-3">
-                        <div class="font-balo">Size: </div>
-
-                        <div class="d-flex justify-content-betweent w-100">
-                          <div class="font-rubik border p-2">
-                            <button class="btn p-0 font-14">4GB RAM</button>
-                          </div>
-                          <div class="font-rubik border p-2">
-                            <button class="btn p-0 font-14">6GB RAM</button>
-                          </div>
-                          <div class="font-rubik border p-2">
-                            <button class="btn p-0 font-14">8GB RAM</button>
-                          </div>
-                          <div class="font-rubik border p-2">
-                            <button class="btn p-0 font-14">6GB RAM</button>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- !size -->
-
 
                     </div>
 
@@ -172,7 +151,11 @@
         <!-- !product -->
 
         <!-- new phone section -->
-        <?php require_once 'includes/_new-product.php' ?>
+        
         <!-- !new phone section -->
+
+        <!-- related products -->
+        <?php require_once 'includes/_related-products.php' ?>
+        <!-- !related products -->
 
 <?php require_once 'includes/footer.php' ?>
