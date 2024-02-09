@@ -97,4 +97,35 @@ button, button:focus {
   width: 80%;
 }
 
+/* Contact Us Template */
+.Contact .address div{
+  /* justify-content: center; */
+  align-items: center;
+  border: 1px solid;
+  padding: 0 10px;
+}
+
+.Contact .address div i {
+  font-size: 30px;
+}
+
+.Contact .contactForm {
+  padding: 15px 7px;
+  /* border: 1px solid; */
+}
+.Contact .contactForm input {
+  height: 45px;
+
+}
+.Contact .contactBtn {
+  /* background: #00A5Ca; */
+  /* color: #fff; */
+  font-size: 18px;
+  border: none;
+  width: 140px;
+  padding: 8px 0;
+  border-radius: 6px;
+}
+
+
 /*# sourceMappingURL=style.css.map */

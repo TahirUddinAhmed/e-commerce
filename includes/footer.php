@@ -39,7 +39,7 @@
               <a href="" class="text-white-50 font-rale font-14">My Account</a>
               <a href="" class="text-white-50 font-rale font-14">Order History</a>
               <a href="" class="text-white-50 font-rale font-14">Whishlist</a>
-              <a href="" class="text-white-50 font-rale font-14">Contact Us</a>
+              <a href="contact.php" class="text-white-50 font-rale font-14">Contact Us</a>
             </div>
           </div>
 
