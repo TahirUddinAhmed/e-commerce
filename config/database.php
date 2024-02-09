@@ -1,5 +1,6 @@
 <?php
-
+ session_start();
+ 
  define('HOST', 'LOCALHOST');
  define('DB_USER', 'root');
  define('DB_PASS', '');

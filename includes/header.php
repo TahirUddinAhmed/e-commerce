@@ -1,5 +1,8 @@
+<?php ob_start() ?>
 <!-- database connection file -->
 <?php require_once 'config/database.php' ?>
+<!-- functions -->
+<?php require_once 'functions.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
