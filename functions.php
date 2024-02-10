@@ -16,10 +16,15 @@ function check_input($data) {
  * @param [object] $conn
  * @return array
  */
-function get_category($conn) {
-    $sql = "SELECT * FROM `category` ORDER BY `category`.`id` DESC";
-    $result = mysqli_query($conn, $sql);
+function get_category($conn, $cat_id = 0) {
+    $sql = "SELECT * FROM `category`";
+    
+    if($cat_id !== 0) {
+        $sql .= " WHERE id = '$cat_id'";
+    }
 
+    $result = mysqli_query($conn, $sql);
+    
     if(!$result) {
         die("QUERY FAILED" . mysqli_error($conn));
     }
@@ -31,9 +36,11 @@ function get_category($conn) {
         while($row=mysqli_fetch_assoc($result)) {
             $categories[] = $row;
         }
+        return $categories;
+    } else {
+        return null;
     }
 
-    return $categories;
 }
 
 /**
@@ -55,6 +62,24 @@ function get_products($conn, $type = '', $limit = 0) {
     if($limit != 0) {
         $sql .= " LIMIT '$limit'";
     }
+
+    $result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($result) > 0) {
+        $products = array();
+
+        while($row=mysqli_fetch_assoc($result)) {
+            $products[] = $row;
+        }
+
+        return $products;
+    } else {
+        return null;
+    }
+}
+
+function cat_products($conn, $cat_id) {
+    $sql = "SELECT * FROM `products` WHERE category_id = '$cat_id'";
 
     $result = mysqli_query($conn, $sql);
 

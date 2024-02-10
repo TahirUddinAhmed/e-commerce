@@ -1,13 +1,36 @@
 <?php require_once 'includes/header.php' ?>
-<!-- <h2 class="font-rale font-20 mt-4 text-center">Product page</h2> -->
+
 <?php
- 
+ if($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if(empty($_POST['category'])) {
+    $catErr = "Plese select a category";
+    header("Location: shop.php");
+  } else {
+    $categoryId = $_POST['category'];
+
+    $products = cat_products($conn, $categoryId);
+    
+  }
+ }
 ?>
 <section id="special-price">
         <div class="container shop mt-5">
-          <h4 class="font-rubik font-20">All Product</h4>
+          <h4 class="font-rubik font-20">
+            <?php
+              if(isset($categoryId)) {
+                $cat = get_category($conn, $categoryId);
+                
+                if($cat !== null) {
+                   foreach ($cat as $catList) {
+                      echo $catList['name'];
+                   }
+                }
+              }
+            ?>
+          </h4>
           <div class="filter-cat text-end font-balo font-18">
             <form action="shopCat.php" method="post">
+              <div>
                 <select name="category" class="form-control" id="">
                     <option value="">Filter by category</option>
                     <?php
@@ -20,15 +43,22 @@
                         }
                     ?>
                 </select>
+                <span class="text-danger font-balo"><?= $catErr ?? null ?></span>
+              </div>
+              <div>
                 <button type="submit" class="btn btn-primary">Search</button>
+              </div>
             </form>
           </div>
 
           <div class="grid">
             <?php
-              $products = get_products($conn);
+              if(isset($categoryId)) {
+                
 
-              foreach($products as $product) {
+                if($products !== null) {
+
+                foreach($products as $product) {
             ?>
             <div class="grid-item Keyboard border">
               <div class="item py-2" style="width: 200px;">
@@ -60,7 +90,16 @@
             </div>
             <?php
               }
-            ?>
+            
+              }else {
+                ?>
+                    <p>Sorry No item</p>
+                <?php
+                }
+            } 
+              ?>
+
+              
             
 
             <!-- <div class="grid-item Apple border">
