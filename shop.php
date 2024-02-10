@@ -1,6 +1,8 @@
 <?php require_once 'includes/header.php' ?>
 <!-- <h2 class="font-rale font-20 mt-4 text-center">Product page</h2> -->
-
+<?php
+ 
+?>
 <section id="special-price">
         <div class="container shop mt-5">
           <h4 class="font-rubik font-20">All Product</h4>
@@ -8,6 +10,15 @@
             <form action="" method="post">
                 <select name="category" class="form-control" id="">
                     <option value="">Filter by category</option>
+                    <?php
+                        $categories = get_category($conn);
+
+                        foreach($categories as $category) {
+                    ?>
+                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                    <?php
+                        }
+                    ?>
                 </select>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
