@@ -25,16 +25,21 @@
           </div>
 
           <div class="grid">
+            <?php
+              $products = get_products($conn);
+
+              foreach($products as $product) {
+            ?>
             <div class="grid-item Keyboard border">
               <div class="item py-2" style="width: 200px;">
 
                 <div class="product font-rale py-2">
                   <div class="img">
-                    <a href=""><img src="./assets/products/keyboard2.webp" alt="product 1" class="img-fluid"></a>
+                    <a href=""><img src="./assets/products/<?= $product['product-img'] ?>" alt="product 1" class="img-fluid"></a>
 
                   </div>
                   <div class="text-center">
-                    Wireless Keyboard
+                    <?= $product['Name'] ?>
                     <div class="rating text-warning font-12">
                       <span><i class="fa fa-star" aria-hidden="true"></i></span>
                       <span><i class="fa fa-star" aria-hidden="true"></i></span>
@@ -43,7 +48,7 @@
                       <span><i class="fa fa-star-half" aria-hidden="true"></i></span>
                     </div>
                     <div class="price py-2">
-                      <span>2054</span>
+                      <span><?= $product['Price'] ?></span>
                     </div>
                     <button class="btn btn-warning font-12 text-white">Add to Cart</button>
                   </div>
@@ -51,8 +56,12 @@
 
               </div>
             </div>
+            <?php
+              }
+            ?>
+            
 
-            <div class="grid-item Apple border">
+            <!-- <div class="grid-item Apple border">
               <div class="item py-2" style="width: 200px;">
 
                 <div class="product font-rale py-2">
@@ -323,7 +332,7 @@
                 </div>
 
               </div>
-            </div>
+            </div> -->
 
           </div>
 
