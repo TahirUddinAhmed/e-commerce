@@ -35,6 +35,10 @@
                         </ul>
                     </li>
                     <li>
+                        <a href="contact.php"><i class="fa-solid fa-message"></i> Contact  </a>
+                    </li>  
+
+                    <li>
                         <a href="#"><i class="fa-solid fa-chart-simple"></i> Analytics and Reporting </a>
                     </li>  
                     <hr>
