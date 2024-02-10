@@ -47,7 +47,7 @@
                     <a class="nav-link" href="#">Category <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Products <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                    <a class="nav-link" href="shop.php">Products</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Blog</a>

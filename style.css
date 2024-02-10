@@ -127,5 +127,27 @@ button, button:focus {
   border-radius: 6px;
 }
 
+/* shop page */
+.shop {
+  /* border: 1px solid; */
+  margin-bottom: 4rem;
+}
+.filter-cat {
+  width: 100%;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+  /* background-color: red; */
 
+}
+.filter-cat form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: 1px solid; */
+  gap: 20px;
+
+}
 /*# sourceMappingURL=style.css.map */
