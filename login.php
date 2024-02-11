@@ -1,3 +1,52 @@
+<!-- include db -->
+<?php
+ require_once './config/database.php';
+ require_once './functions.php';
+?>
+<?php
+  if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $passsword = $_POST['password'];
+
+    $error = array(); 
+    if(empty($email)) {
+        $error['emptyEmail'] = "Email is required!";
+    } 
+    if(empty($passsword)) {
+        $error['emptyPass'] = "Password is required!";
+    }
+
+    // check if email is exits or not 
+    if(emailExitst($conn, $email) !== true) {
+        $error['errEmail'] = 'Email is not exist. Please create an account';
+    }
+
+    if(empty($error)) {
+        // match the password 
+        $sql = "SELECT * FROM users WHERE `email` = '$email'";
+        $result = mysqli_query($conn, $sql);
+
+        if(!$result) {
+            die("SOMETHING WENT WORNG" . mysqli_error($conn));
+        } 
+
+        while($row=mysqli_fetch_assoc($result)) {
+            $id = $row['id'];
+            $db_pass = $row['password'];
+        }
+
+        $checkPwd = password_verify($passsword, $db_pass);
+
+        if($checkPwd == true) {
+            // redirect to the home page and store details in sessions
+            $_SESSION['uid'] = $id;
+
+            header("Location: ./index.php");
+        }
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,14 +72,17 @@
         ?>
             <div class="col-md-6 col-lg-5 rounded shadow-lg p-4 bg-light">
                 <h2 class="text-center mb-4">Welcome to ShopNest</h2>
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post">
                     <div class="mb-3">
-                        <label for="username" class="form-label">Email address or username</label>
-                        <input type="text" class="form-control" id="username" placeholder="Enter your email or username" required>
+                        <label for="email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Enter your email or username" value="<?= $email ?? null ?>">
+                        <span class="text-danger"><?= $error['emptyEmail'] ?? null ?></span>
+                        <span class="text-danger"><?= $error['errEmail'] ?? null ?></span>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter your password" required>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Enter your password" value="<?= $password ?? null ?>">
+                        <span class="text-danger"><?= $error['emptyPass'] ?? null ?></span>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Sign in</button>
                     <p class="text-center mt-3">

@@ -144,3 +144,20 @@ function emailExitst($conn, $email) {
 
     return $result;
 }
+
+function get_user($conn, $uid) {
+    $sql = "SELECT * FROM users WHERE `id` = '$uid'";
+    $result = mysqli_query($conn, $sql);
+
+    if(!$result) {
+        die("SOMETHING WENT WRONG" . mysqli_error($conn));
+    }
+
+    $user = array();
+
+    while($row=mysqli_fetch_assoc($result)) {
+        $user[] = $row;
+    }
+
+    return $user;
+}

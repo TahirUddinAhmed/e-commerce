@@ -3,6 +3,17 @@
 <?php require_once 'config/database.php' ?>
 <!-- functions -->
 <?php require_once 'functions.php' ?>
+
+<?php
+ if(!isset($_SESSION['uid'])) {
+  header("location: ./login.php");
+  exit();
+ }
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,9 +36,27 @@
     <header>
         <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
             <p class="font-rale font-12 text-black-50 m-0">Morigaon, Assam, 782105</p>
-            <div class="font-rale font-14">
-                <a href="#" class="px-3 border-right border-left text-dark">Login</a>
+            <div class="font-rale font-14 d-flex">
+              <div>
                 <a id="list" href="#" class="px-3 border-right text-dark">Whishlist (0)</a>
+              </div>
+              <!-- <a href="#" class="px-3 border-right border-left text-dark">Account</a> -->
+              
+              <div class="dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Account
+                </a>
+
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Orders</a></li>
+                  <hr>
+                  <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                </ul>
+              </div>
+
+
+              
             </div>
         </div>
 
