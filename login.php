@@ -11,6 +11,16 @@
     <div class="container py-5">
         
         <div class="row d-flex align-items-center justify-content-center">
+        <?php
+            if(isset($_GET['created'])) {
+        ?>
+            <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                Your account has been created successfully
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php
+            }
+        ?>
             <div class="col-md-6 col-lg-5 rounded shadow-lg p-4 bg-light">
                 <h2 class="text-center mb-4">Welcome to ShopNest</h2>
                 <form class="needs-validation" novalidate>

@@ -29,13 +29,13 @@
     // create account 
     $hashed_pwd = password_hash($password, PASSWORD_DEFAULT);
 
-    $create = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`, `phone`, `address`, `pincode`, `role`, `created_at`) VALUES ('$first_name', '$last_name', '$email', '', '', '', '', 'buyer', current_timestamp());";
+    $create = "INSERT INTO `users` (`first_name`, `last_name`, `email`, `password`, `phone`, `address`, `pincode`, `role`, `created_at`) VALUES ('$first_name', '$last_name', '$email', '$hashed_pwd', '', '', '', 'buyer', current_timestamp());";
     $result = mysqli_query($conn, $create);
 
     if(!$result) {
         die("SOMETHING WENT WRONG" . mysqli_error($conn));
     } else {
-        header("../login.php?created");
+        header("Location: ../login.php?created");
     }
 
  } else {
