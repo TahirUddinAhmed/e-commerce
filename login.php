@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container py-5">
+        
         <div class="row d-flex align-items-center justify-content-center">
             <div class="col-md-6 col-lg-5 rounded shadow-lg p-4 bg-light">
                 <h2 class="text-center mb-4">Welcome to ShopNest</h2>

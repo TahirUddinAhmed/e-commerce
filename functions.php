@@ -14,6 +14,7 @@ function check_input($data) {
  * get_category function
  *
  * @param [object] $conn
+ * @param [number] $cat_id
  * @return array
  */
 function get_category($conn, $cat_id = 0) {
@@ -78,6 +79,13 @@ function get_products($conn, $type = '', $limit = 0) {
     }
 }
 
+/**
+ * Undocumented function
+ *
+ * @param [type] $conn
+ * @param [type] $cat_id
+ * @return void
+ */
 function cat_products($conn, $cat_id) {
     $sql = "SELECT * FROM `products` WHERE category_id = '$cat_id'";
 
@@ -94,4 +102,45 @@ function cat_products($conn, $cat_id) {
     } else {
         return null;
     }
+}
+
+// registration form validation
+function validate($first_name, $last_name, $email, $password, $con_pass) {
+    $result = false;
+
+    if(empty($first_name) || empty($last_name) || empty($email) || empty($password) || empty($con_pass)) {
+        $result = true;
+    }
+
+    return $result;
+}
+
+function pwdMatch($password, $con_pass) {
+    $result = false;
+    if($password !== $con_pass) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    return $result;
+}
+
+function emailExitst($conn, $email) {
+    $result = false;
+
+    $sql = "SELECT * FROM users WHERE `email` = '$email'";
+    $dbRes = mysqli_query($conn, $sql);
+
+    if(!$dbRes) {
+        die("QUERY FAILED" . mysqli_error($conn));
+    }
+
+    if(mysqli_num_rows($dbRes) > 0) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    return $result;
 }
