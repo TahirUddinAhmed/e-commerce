@@ -24,16 +24,9 @@
                     </li>
 
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa-solid fa-users"></i> Customer Management <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="customer" class="collapse">
-                            <li>
-                                <a href="#">Add Customers</a>
-                            </li>
-                            <li>
-                                <a href="#">View Customers</a>
-                            </li>
-                        </ul>
+                        <a href="customers.php"><i class="fa-solid fa-users"></i> Customer Management </a>
                     </li>
+
                     <li>
                         <a href="contact.php"><i class="fa-solid fa-message"></i> Contact  </a>
                     </li>  
