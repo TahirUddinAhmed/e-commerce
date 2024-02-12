@@ -22,3 +22,30 @@ function get_customers($conn) {
 
     return $customers;
 }
+
+// email exits 
+/**
+ * Undocumented function
+ *
+ * @param [object] $conn
+ * @param [string] $email
+ * @return boolean
+ */
+function emailExists($conn, $email) {
+    $result = false;
+
+    $sql = "SELECT * FROM users WHERE `email` = '$email' AND role = 'admin'";
+    $result = mysqli_query($conn, $sql);
+
+    if(!$result) {
+        die("QUERY FAILED" . mysqli_errno($conn));
+    } 
+
+    if(mysqli_num_rows($result) > 0) {
+        $result = true;
+    } else {
+        $result = false;
+    }
+
+    return $result;
+}
