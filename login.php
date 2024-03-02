@@ -2,8 +2,7 @@
 <?php
  require_once './config/database.php';
  require_once './functions.php';
-?>
-<?php
+
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $passsword = $_POST['password'];

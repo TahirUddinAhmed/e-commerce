@@ -2,7 +2,7 @@
 <!-- database connection file -->
 <?php require_once 'config/database.php' ?>
 <!-- functions -->
-<?php require_once 'functions.php' ?>
+
 
 <?php
  if(!isset($_SESSION['uid'])) {
